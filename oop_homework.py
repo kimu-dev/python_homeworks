@@ -120,8 +120,6 @@ print(lecturer_2)
 print(student_1)
 print(student_2)
 
-print(student_1.grades.values())
-
 def avg_grade_stud(list_students, course_name):
     list_values = []
     for stud in list_students:
