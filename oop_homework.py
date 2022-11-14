@@ -27,13 +27,21 @@ class Student:
         res = f'Имя: {self.name}\nФамиля: {self.surname}\nСредняя оценка за домашние задания: {self.avg_grade()}\nКурсы в процессе изучения: {self.courses_in_progress}\nЗавершенные курсы: {self.finished_courses}'
         return res
 
-    def compare_scores(self, other_student):
+    # def compare_scores(self, other_student):
+    #     if not isinstance(self, Student):
+    #         return
+    #     if other_student.avg_grade() < self.avg_grade():
+    #         print(f'Успеваемость {self.name} выше чем у {other_student.name}')
+    #     else:
+    #         print(f'Успеваемость {self.name} ниже чем у {other_student.name}')
+
+    def __lt__(self, other_student):
         if not isinstance(self, Student):
             return
-        if other_student.avg_grade() < self.avg_grade():
+        if self.avg_grade() < other_student.avg_grade():
             print(f'Успеваемость {self.name} выше чем у {other_student.name}')
         else:
-            print(f'Успеваемость {self.name} ниже чем у {other_student.name}')
+            print(f'Успеваемость {self.name} ниже чем у {other_student.name}')        
 
 class Mentor:
     def __init__(self, name, surname):
@@ -49,13 +57,21 @@ class Lecturer(Mentor):
             values += values
         return np.mean(values)
 
-    def compare_scores(self, other_lecturer):
+    # def compare_scores(self, other_lecturer):
+    #     if not isinstance(self, Lecturer):
+    #         return
+    #     if other_lecturer.avg_grade() < self.avg_grade():
+    #         print(f'Профессионализм {self.name} выше чем у {other_lecturer.name}')
+    #     else:
+    #         print(f'Профессионализм {self.name} ниже чем у {other_lecturer.name}')
+
+    def __lt__(self, other_lecturer):
         if not isinstance(self, Lecturer):
             return
         if other_lecturer.avg_grade() < self.avg_grade():
             print(f'Профессионализм {self.name} выше чем у {other_lecturer.name}')
         else:
-            print(f'Профессионализм {self.name} ниже чем у {other_lecturer.name}')
+            print(f'Профессионализм {self.name} ниже чем у {other_lecturer.name}')           
 
     def __str__(self):
         for values in self.lecturer_grades.values():
@@ -110,8 +126,11 @@ reviewer_1.rate_hw(student_1, 'Python', 7)
 reviewer_2.rate_hw(student_2, 'Python', 3)
 reviewer_2.rate_hw(student_2, 'Python', 5)
 
-student_1.compare_scores(student_2)
-lecturer_2.compare_scores(lecturer_1)
+# student_1.compare_scores(student_2)
+# lecturer_2.compare_scores(lecturer_1)
+
+print(student_1 < student_2)
+print(lecturer_2 > lecturer_1)
 
 print(reviewer_1)
 print(reviewer_2)
