@@ -2,7 +2,7 @@
 select album_name, release_year from albums where release_year = 2018;
 
 -- 2. название и продолжительность самого длительного трека
-select track_name, duration from tracks where id in (select id from tracks order by duration desc limit 1);
+select track_name, duration from tracks order by duration desc limit 1;
 
 -- 3. название треков, продолжительность которых не менее 3,5 минуты
 select track_name from tracks where duration >= 230;
